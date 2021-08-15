@@ -1,0 +1,28 @@
+class Solution {
+    public int lengthOfLIS(int[] nums) {
+        
+        
+        // 1. creating a array for saving
+        // 2. relation between the array, recurrent relation
+        // 3. base case
+        
+        int[] dp = new int[nums.length];
+        Arrays.fill(dp, 1);
+        
+        
+        for(int i=0; i < nums.length; i++){
+            for(int j = 0; j < i; j++){
+                if(nums[i] > nums[j]){
+                    dp[i] = Math.max(dp[i], dp[j] + 1);    
+                }
+            }   
+        }
+        
+        int longest = 0; 
+        for (int c: dp){
+            longest = Math.max(longest, c);
+        }
+        
+        return longest; 
+    }
+}
